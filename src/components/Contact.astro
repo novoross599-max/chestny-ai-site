@@ -1,0 +1,82 @@
+<section class="section contact" id="contact">
+  <div class="container">
+    <span class="section-label">Обратная связь</span>
+    <div class="contact-heading">
+      <h2 class="section-title">Связаться со мной</h2>
+      <p>Можно задать вопрос, предложить тему для дневника или поделиться своим опытом изучения ИИ.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="message-form" data-inactive-form aria-describedby="message-purpose form-status">
+        <div class="form-title"><h3>Написать сообщение</h3><span>Форма подготовлена</span></div>
+        <label>Имя<input type="text" name="name" autocomplete="name" placeholder="Как к вам обращаться" /></label>
+        <label>Email или Telegram<input type="text" name="contact" autocomplete="email" placeholder="example@mail.ru или @username" /></label>
+        <label>Сообщение<textarea name="message" rows="5" placeholder="Расскажите, чем я могу помочь"></textarea></label>
+        <p class="processing-purpose" id="message-purpose"><strong>Цель будущей обработки:</strong> обработка обращения пользователя и предоставление ответа на него.</p>
+        <label class="consent">
+          <input type="checkbox" name="personal-data-consent" required />
+          <span>Я принимаю <a href="/personal-data-consent/">Согласие на обработку персональных данных</a> и ознакомлен(а) с <a href="/privacy/">Политикой обработки персональных данных</a>.</span>
+        </label>
+        <button class="btn btn-primary" type="submit" disabled aria-describedby="form-status">Отправить</button>
+        <p class="form-status" id="form-status">Отправка пока не подключена. Данные никуда не передаются и не сохраняются.</p>
+      </form>
+      <div class="contact-side">
+        <form class="subscribe" data-inactive-form aria-labelledby="subscribe-title" aria-describedby="subscribe-purpose subscribe-status">
+          <h3 id="subscribe-title">Подписаться на обновления</h3>
+          <p class="processing-purpose" id="subscribe-purpose"><strong>Цель будущей обработки:</strong> направление информационных сообщений и уведомлений об обновлениях проекта «Заработай с ИИ: Честный Дневник».</p>
+          <label><span>Email</span><input type="email" name="subscription-email" autocomplete="email" placeholder="example@mail.ru" /></label>
+          <label class="consent">
+            <input type="checkbox" name="newsletter-consent" required />
+            <span>Я принимаю <a href="/newsletter-consent/">Согласие на получение информационных сообщений</a> и ознакомлен(а) с <a href="/privacy/">Политикой обработки персональных данных</a>.</span>
+          </label>
+          <button class="btn btn-secondary" type="submit" disabled aria-describedby="subscribe-status">Подписаться</button>
+          <p class="form-status" id="subscribe-status">Функция пока готовится к подключению. Email никуда не передаётся и не сохраняется.</p>
+        </form>
+        <section class="contacts" aria-labelledby="contacts-title">
+          <h3 id="contacts-title">Мои контакты</h3>
+          <p>Продолжение дневника, новые практики и короткие заметки:</p>
+          <a href="https://t.me/Constant2026" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span><strong>Telegram</strong><small>@Constant2026</small></a>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.querySelectorAll('[data-inactive-form]').forEach((form) => {
+    form.addEventListener('submit', (event) => event.preventDefault());
+  });
+</script>
+<style>
+  .contact { background: var(--surface); border-top: 1px solid var(--line); }
+  .contact-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
+  .contact-heading h2, .contact-heading p { margin-bottom: 0; }
+  .contact-heading p { max-width: 520px; }
+  .contact-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1.25rem; }
+  .message-form, .subscribe, .contacts { padding: clamp(1.4rem, 3.5vw, 2rem); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-strong); }
+  .message-form { display: grid; gap: 1rem; }
+  .form-title { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .form-title h3 { margin: 0; }
+  .form-title > span { padding: .35rem .6rem; border-radius: 99px; color: var(--primary); background: var(--surface); font-size: .7rem; font-weight: 700; text-transform: uppercase; }
+  label { display: grid; gap: .45rem; color: var(--ink); font-size: .88rem; font-weight: 700; }
+  input, textarea { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: .85rem 1rem; color: var(--ink); background: var(--bg); font-family: var(--font-body); font-size: 1rem; font-weight: 400; }
+  textarea { resize: vertical; }
+  .consent { grid-template-columns: auto 1fr; align-items: start; font-size: .78rem; font-weight: 400; }
+  .consent input { width: 18px; height: 18px; margin-top: .18rem; accent-color: var(--primary); }
+  .consent a { color: var(--primary); font-weight: 700; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .consent a:hover { color: var(--ink); }
+  button:disabled { cursor: not-allowed; opacity: .58; transform: none; }
+  .message-form .btn { justify-self: start; }
+  .processing-purpose { margin: 0; padding: .8rem 1rem; border-left: 3px solid var(--accent); background: var(--surface); font-size: .82rem; }
+  .processing-purpose strong { color: var(--ink); }
+  .form-status { margin: 0; color: var(--ink); font-size: .8rem; font-weight: 700; }
+  .contact-side { display: grid; gap: 1.25rem; }
+  .subscribe h3, .contacts h3 { margin-bottom: .65rem; }
+  .subscribe p, .contacts p { font-size: .92rem; }
+  .subscribe { display: grid; gap: .9rem; }
+  .subscribe .btn { justify-self: start; }
+  .contacts a { display: grid; grid-template-columns: 46px 1fr; column-gap: 1rem; align-items: center; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--line); color: var(--primary); text-decoration: none; }
+  .contacts a > span { grid-row: span 2; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; color: var(--ink); background: var(--accent); }
+  .contacts strong, .contacts small { display: block; }
+  .contacts small { color: var(--muted); }
+  @media(max-width: 780px) { .contact-heading { align-items: start; flex-direction: column; } .contact-grid { grid-template-columns: 1fr; } }
+  @media(max-width: 480px) { .form-title { align-items: start; flex-direction: column; } }
+</style>

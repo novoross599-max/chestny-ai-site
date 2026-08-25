@@ -1,0 +1,13 @@
+---
+const results = [
+  ['Первый сайт', 'Собрал полноценную страницу с Codex и понял логику компонентов.'],
+  ['GitHub', 'Научился сохранять версии проекта и работать с репозиторием.'],
+  ['Публикация', 'Разобрал путь от локальной папки до работающего сайта в интернете.'],
+  ['Node.js', 'Установил среду, запускаю проекты и понимаю базовые команды.'],
+  ['Память и skills', 'Настроил проектную память и инструкции для повторяемой работы.']
+];
+---
+<section class="section results" id="results"><div class="container"><div class="results-head"><div><span class="section-label">Мои результаты</span><h2 class="section-title">Уже не теория.<br />Вот что получилось.</h2></div><div class="counter"><strong>5</strong><span>практических<br />результатов</span></div></div><div class="result-grid">{results.map(([title,text], i) => <article class:list={{wide:i===0}}><span>0{i+1}</span><div class="check">✓</div><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+<style>
+  .results { color: white; background: var(--primary); } .results .section-label { color: white; } .results .section-title { margin-bottom: 0; color: white; } .results-head { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; } .counter { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; border: 1px solid rgba(255,255,255,.35); border-radius: 18px; } .counter strong { color: var(--accent); font: 400 3rem/1 var(--font-heading); } .counter span { color: white; font-size: .78rem; line-height: 1.3; text-transform: uppercase; } .result-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,.3); border: 1px solid rgba(255,255,255,.3); } article { position: relative; min-height: 255px; padding: 1.7rem; background: var(--primary); } article.wide { grid-column: span 2; } article > span { color: white; font-size: .8rem; } .check { position: absolute; top: 1.4rem; right: 1.4rem; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; color: var(--ink); background: var(--accent); } h3 { margin-top: 4rem; color: white; } p { max-width: 410px; margin-bottom: 0; color: white; font-size: 1rem; } @media(max-width:760px){.results-head{align-items:start;flex-direction:column}.result-grid{grid-template-columns:1fr 1fr}article.wide{grid-column:span 2}} @media(max-width:500px){.result-grid{grid-template-columns:1fr}article.wide{grid-column:auto}article{min-height:220px}}
+</style>

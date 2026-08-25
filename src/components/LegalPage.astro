@@ -1,0 +1,71 @@
+---
+import Footer from './Footer.astro';
+
+const { title, purpose, sections = [] } = Astro.props;
+---
+
+<header class="legal-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Вернуться на главную страницу">Заработай с ИИ<small>Честный Дневник</small></a>
+    <a class="back-link" href="/">← На главную</a>
+  </div>
+</header>
+<main id="main" class="legal-main">
+  <article class="container legal-document">
+    <p class="eyebrow">Юридическая страница · техническая заготовка</p>
+    <h1>{title}</h1>
+    <aside class="draft-warning" role="note">
+      <strong>Документ не готов к публикации.</strong>
+      <span>Это структурная заготовка. До начала сбора персональных данных её необходимо заполнить реальными сведениями и проверить с профильным юристом.</span>
+    </aside>
+    <p class="purpose"><strong>Назначение документа:</strong> {purpose}</p>
+    <dl class="operator-todos">
+      <div><dt>Оператор</dt><dd>[ФИО ОПЕРАТОРА — ЗАПОЛНИТЬ ПЕРЕД ПУБЛИКАЦИЕЙ]</dd></div>
+      <div><dt>Адрес</dt><dd>[АДРЕС ОПЕРАТОРА — ЗАПОЛНИТЬ]</dd></div>
+      <div><dt>Контакт по вопросам персональных данных</dt><dd>[КОНТАКТ ДЛЯ ОБРАЩЕНИЙ ПО ПЕРСОНАЛЬНЫМ ДАННЫМ — ЗАПОЛНИТЬ]</dd></div>
+    </dl>
+    <div class="document-sections">
+      {sections.map((section) => (
+        <section>
+          <h2>{section.heading}</h2>
+          <p>{section.text}</p>
+          {section.todo && <p class="inline-todo">{section.todo}</p>}
+        </section>
+      ))}
+    </div>
+    <div class="publication-todo">
+      <h2>Перед публикацией</h2>
+      <p>[ДАТА ВСТУПЛЕНИЯ ДОКУМЕНТА В СИЛУ — ЗАПОЛНИТЬ]</p>
+      <p>[ПРОВЕРИТЬ И ДОПОЛНИТЬ ДОКУМЕНТ ПОСЛЕ ВЫБОРА РОССИЙСКОГО ОБРАБОТЧИКА И ХРАНИЛИЩА ДАННЫХ]</p>
+    </div>
+    <a class="btn btn-secondary" href="/">Вернуться на главную</a>
+  </article>
+</main>
+<Footer />
+
+<style>
+  .legal-header { border-bottom: 1px solid var(--line); background: rgba(243,240,232,.94); }
+  .header-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .brand { color: var(--ink); font-size: .9rem; font-weight: 800; line-height: 1.1; text-decoration: none; }
+  .brand small { display: block; margin-top: .25rem; color: var(--muted); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+  .back-link { color: var(--primary); font-size: .9rem; font-weight: 800; text-underline-offset: 4px; }
+  .legal-main { padding: clamp(3rem, 8vw, 6rem) 0; }
+  .legal-document { max-width: 900px; }
+  .eyebrow { margin-bottom: 1rem; color: var(--primary); font-size: .76rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  h1 { max-width: 780px; margin-bottom: 1.5rem; }
+  .draft-warning { display: grid; gap: .35rem; margin: 0 0 1.5rem; padding: 1.2rem 1.35rem; border: 2px solid var(--accent); border-radius: 16px; background: #fff7e9; }
+  .draft-warning strong { color: var(--ink); }
+  .draft-warning span { color: var(--muted); font-size: .94rem; }
+  .purpose { padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+  .operator-todos { display: grid; gap: .75rem; margin: 1.5rem 0 2.5rem; }
+  .operator-todos div { display: grid; grid-template-columns: minmax(150px, .35fr) 1fr; gap: 1rem; padding: 1rem; border: 1px dashed var(--accent); border-radius: 12px; background: var(--surface-strong); }
+  dt { color: var(--muted); font-size: .8rem; font-weight: 800; text-transform: uppercase; }
+  dd { margin: 0; color: #7a3f00; font-size: .88rem; font-weight: 800; }
+  .document-sections { display: grid; gap: 2rem; }
+  .document-sections section { padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
+  .document-sections h2, .publication-todo h2 { font-size: clamp(1.35rem, 2.4vw, 1.7rem); }
+  .inline-todo, .publication-todo p { color: #7a3f00; font-size: .88rem; font-weight: 800; }
+  .publication-todo { margin: 2rem 0; padding: 1.35rem; border-radius: 16px; background: var(--surface); }
+  .publication-todo p:last-child { margin-bottom: 0; }
+  @media(max-width: 560px) { .operator-todos div { grid-template-columns: 1fr; gap: .35rem; } .back-link { font-size: .82rem; } }
+</style>

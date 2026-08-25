@@ -1,0 +1,13 @@
+---
+const faqs = [
+  ['Можно ли начать изучать ИИ без технического образования?', 'Да. Для старта важнее любопытство, конкретная задача и готовность проверять результат. Сложные термины можно осваивать постепенно, по мере необходимости.'],
+  ['Нужно ли уметь программировать, чтобы пользоваться Codex?', 'Нет. Codex понимает обычные формулировки и может объяснять свои действия. Но базовое понимание файлов, команд и логики проекта со временем сделает работу увереннее.'],
+  ['Сколько времени нужно уделять обучению?', 'Лучше заниматься регулярно по 20–40 минут и каждый раз получать небольшой практический результат, чем редко смотреть длинные уроки без практики.'],
+  ['Можно ли доверять ответам ИИ?', 'Не безоговорочно. Важные факты, расчёты и код нужно проверять. ИИ — сильный помощник, но ответственность за итог остаётся у человека.'],
+  ['Когда знания начнут приносить пользу?', 'Уже с первых небольших задач: подготовить текст, разобрать информацию, автоматизировать повторяющееся действие или собрать простой сайт.']
+];
+---
+<section class="section" id="faq"><div class="container faq-grid"><div><span class="section-label">FAQ</span><h2 class="section-title">Вопросы, которые возникают в начале</h2><p>Короткие и честные ответы без лишней сложности.</p></div><div class="questions">{faqs.map(([q,a],i) => <details open={i===0}><summary><span>{q}</span><b aria-hidden="true">+</b></summary><p>{a}</p></details>)}</div></div></section>
+<style>
+  .faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: clamp(2rem,8vw,8rem); } details { border-top: 1px solid var(--line); } details:last-child { border-bottom: 1px solid var(--line); } summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.35rem 0; cursor: pointer; font-weight: 800; list-style: none; } summary::-webkit-details-marker { display:none; } summary b { display: grid; flex: 0 0 32px; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 50%; color: var(--primary); font-size: 1.2rem; transition: transform .2s; } details[open] summary b { transform: rotate(45deg); } details p { padding-right: 3rem; font-size: .93rem; } @media(max-width:760px){.faq-grid{grid-template-columns:1fr}}
+</style>

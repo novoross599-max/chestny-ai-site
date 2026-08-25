@@ -1,0 +1,55 @@
+---
+const practicums = [
+  {
+    label: 'Практикум №1',
+    description: 'Бесплатный 4-дневный онлайн-практикум по продвижению с помощью нейросетей: ИИ помогает вести соцсети и создавать контент.',
+    href: 'https://web.plaan.ai/minicourse/neuromaker/profession?gcpc=1b10f'
+  },
+  {
+    label: 'Практикум №2',
+    description: 'Бесплатный 3-дневный онлайн-практикум о том, как зарабатывать с помощью нейросетей: создание продающих сайтов, чат-ботов и приложений.',
+    href: 'https://school.plaan.ai/ai-boss/praktikum/rega/general/?gcpc=1b10f'
+  }
+];
+---
+<section class="section academy" id="academy">
+  <div class="container academy-grid">
+    <div class="seal" aria-hidden="true">
+      <span>Где<br />я учусь</span>
+      <svg viewBox="0 0 150 150"><defs><path id="circle" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0" /></defs><text><textPath href="#circle">ПРАКТИКА • ИНСТРУМЕНТЫ • СООБЩЕСТВО • </textPath></text></svg>
+    </div>
+    <div class="academy-content">
+      <span class="section-label">Среда обучения</span>
+      <h2 class="section-title">Plaan Академия</h2>
+      <p class="section-lead">Часть своего пути я прохожу в Plaan Академии: изучаю современные ИИ-инструменты, выполняю практические задания и постепенно собираю собственную систему работы.</p>
+      <p>Здесь я рассказываю только о личном опыте и результатах — спокойно, без громких обещаний.</p>
+      <div class="practicum-grid">
+        {practicums.map((practicum) => (
+          <article class="practicum-card">
+            <span>{practicum.label}</span>
+            <p>{practicum.description}</p>
+            <a class="btn btn-secondary" href={practicum.href} target="_blank" rel="noopener noreferrer sponsored">Подробнее о практикуме <span aria-hidden="true">↗</span></a>
+          </article>
+        ))}
+      </div>
+      <p class="partner-note">Ссылки партнёрские. Участие в указанных практикумах бесплатное. После их прохождения вам могут предложить продолжить обучение на платной основе. Решение о продолжении обучения вы принимаете самостоятельно. Если вы оформите платное обучение по моей партнёрской ссылке, я могу получить вознаграждение. Для вас стоимость от этого не увеличивается.</p>
+    </div>
+  </div>
+</section>
+<style>
+  .academy-grid { display: grid; grid-template-columns: .55fr 1.45fr; align-items: start; gap: clamp(3rem, 7vw, 7rem); }
+  .seal { position: sticky; top: 120px; display: grid; place-items: center; width: min(100%, 300px); aspect-ratio: 1; margin-inline: auto; border: 2px solid var(--accent); border-radius: 50%; color: var(--primary); background: var(--surface); }
+  .seal span { font: italic 400 clamp(2rem, 4vw, 2.5rem)/.9 var(--font-heading); text-align: center; }
+  .seal svg { position: absolute; inset: 8%; width: 84%; height: 84%; animation: turn 24s linear infinite; }
+  .seal text { fill: var(--primary); font: 700 10px var(--font-body); letter-spacing: 2.5px; }
+  .practicum-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 2rem; }
+  .practicum-card { display: flex; min-height: 290px; flex-direction: column; align-items: flex-start; padding: clamp(1.25rem, 2.5vw, 1.7rem); border: 1px solid var(--line); border-radius: 18px; background: var(--surface-strong); }
+  .practicum-card > span { color: var(--primary); font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .practicum-card p { margin: 1rem 0 1.5rem; font-size: .95rem; }
+  .practicum-card .btn { width: 100%; min-height: 46px; margin-top: auto; padding-inline: 1rem; font-size: .82rem; text-align: center; }
+  .partner-note { margin: 1rem 0 0; padding: 1rem 1.15rem; border-left: 3px solid var(--accent); color: var(--muted); background: var(--surface); font-size: .78rem; line-height: 1.6; }
+  @keyframes turn { to { transform: rotate(360deg); } }
+  @media(prefers-reduced-motion:reduce) { .seal svg { animation: none; } }
+  @media(max-width: 860px) { .academy-grid { grid-template-columns: 1fr; } .seal { position: relative; top: auto; width: 220px; } }
+  @media(max-width: 620px) { .practicum-grid { grid-template-columns: 1fr; } .practicum-card { min-height: 0; } }
+</style>

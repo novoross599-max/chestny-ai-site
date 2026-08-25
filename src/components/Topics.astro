@@ -1,0 +1,13 @@
+---
+const topics = [
+  ['01', 'ChatGPT', 'Как задавать точные вопросы, проверять ответы и превращать диалог в рабочий инструмент.'],
+  ['02', 'Codex', 'Как создавать и улучшать проекты вместе с ИИ-агентом, даже без опыта разработки.'],
+  ['03', 'Вайбкодинг', 'Как двигаться от идеи к прототипу, объясняя желаемый результат обычными словами.'],
+  ['04', 'Создание сайтов', 'Структура, дизайн, адаптивность и публикация — на реальных небольших проектах.'],
+  ['05', 'ИИ-ассистенты', 'Как собирать помощников под конкретные задачи и не терять контроль над результатом.']
+];
+---
+<section class="section" id="topics"><div class="container"><span class="section-label">Что я изучаю</span><div class="heading-row"><h2 class="section-title">Пять направлений,<br />одна цель — делать самому</h2><p>Каждую тему разбираю через понятную практическую задачу, а не в отрыве от жизни.</p></div><div class="topics">{topics.map(([n,title,text]) => <article><span>{n}</span><div><h3>{title}</h3><p>{text}</p></div><b aria-hidden="true">↗</b></article>)}</div></div></section>
+<style>
+  .heading-row { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 3rem; } .heading-row p { max-width: 410px; } .topics { border-top: 1px solid var(--line); } article { display: grid; grid-template-columns: 70px 1fr auto; gap: 1.2rem; align-items: center; padding: 1.55rem .5rem; border-bottom: 1px solid var(--line); transition: padding .2s, background .2s; } article:hover { padding-inline: 1.2rem; background: rgba(255,255,255,.48); } article > span { color: var(--primary); font-family: var(--font-heading); font-style: italic; } h3 { margin-bottom: .35rem; } p { margin-bottom: 0; } article b { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%; color: var(--primary); } @media(max-width:700px){.heading-row{align-items:start;flex-direction:column}.topics article{grid-template-columns:42px 1fr}.topics article b{display:none}}
+</style>

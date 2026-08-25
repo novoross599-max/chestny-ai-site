@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.astro/
+
+# Environment files and local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+credentials.json
+secrets.*
+
+# Local tooling and logs
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
