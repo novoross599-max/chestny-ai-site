@@ -7,6 +7,8 @@
       <div class="hero-actions"><a class="btn btn-primary" href="https://t.me/AI_Dnevnik_K" target="_blank" rel="noopener noreferrer">Читать дневник <span aria-hidden="true">↗</span></a><a class="text-link" href="#results">Посмотреть результаты ↓</a></div>
       <div class="principles"><span>Без сложных терминов</span><span>Только личный опыт</span><span>От первого шага</span></div>
     </div>
+    <div class="hero-visual">
+      <img class="hero-illustration" src="/images/diary-learning.webp" srcset="/images/diary-learning-480.webp 480w, /images/diary-learning.webp 884w" sizes="(max-width: 640px) calc(100vw - 1.25rem), (max-width: 900px) 620px, 460px" width="884" height="473" alt="Мужчина осваивает нейросети за ноутбуком и ведёт дневник обучения" loading="eager" decoding="async" />
     <div class="diary" aria-label="Фрагмент дневника обучения">
       <div class="diary-top"><span>Запись № 07</span><time datetime="2026-08-19">19 августа</time></div>
       <div class="diagram">
@@ -17,9 +19,12 @@
       <div class="note"><b>Вывод дня</b><span>Маленький рабочий результат ценнее десятка просмотренных уроков.</span></div>
       <svg class="scribble" viewBox="0 0 150 70" aria-hidden="true"><path d="M5 60C48 64 110 59 133 25M116 27l19-5-3 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
     </div>
+    </div>
   </div>
 </section>
 <style>
+  .hero-visual { min-width: 0; display: grid; gap: 2rem; width: 100%; max-width: 620px; }
+  .hero-illustration { display: block; width: 100%; height: auto; }
   .hero { min-height: calc(100vh - 76px); display: grid; align-items: center; padding: clamp(3rem, 7vw, 6rem) 0; overflow: hidden; }
   .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(2.5rem, 6vw, 6rem); }
   .eyebrow { display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.3rem; padding: .48rem .8rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.45); color: var(--primary); font-size: .78rem; font-weight: 800; }

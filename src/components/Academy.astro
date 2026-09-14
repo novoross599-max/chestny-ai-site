@@ -23,6 +23,7 @@ const practicums = [
       <h2 class="section-title">Plaan Академия</h2>
       <p class="section-lead">Часть своего пути я прохожу в Plaan Академии: изучаю современные ИИ-инструменты, выполняю практические задания и постепенно собираю собственную систему работы.</p>
       <p>Здесь я рассказываю только о личном опыте и результатах — спокойно, без громких обещаний.</p>
+      <img class="academy-illustration" src="/images/learning-environment.webp" srcset="/images/learning-environment-480.webp 480w, /images/learning-environment.webp 977w" sizes="(max-width: 640px) calc(100vw - 1.25rem), (max-width: 860px) calc(100vw - 2rem), 780px" width="977" height="489" alt="Обучение нейросетям: инструменты, сообщество и применение знаний в проектах" loading="lazy" decoding="async" />
       <div class="practicum-grid">
         {practicums.map((practicum) => (
           <article class="practicum-card">
@@ -37,6 +38,8 @@ const practicums = [
   </div>
 </section>
 <style>
+  .academy-content { min-width: 0; }
+  .academy-illustration { display: block; width: 100%; height: auto; margin-top: 1.5rem; }
   .academy-grid { display: grid; grid-template-columns: .55fr 1.45fr; align-items: start; gap: clamp(3rem, 7vw, 7rem); }
   .seal { position: sticky; top: 120px; display: grid; place-items: center; width: min(100%, 300px); aspect-ratio: 1; margin-inline: auto; border: 2px solid var(--accent); border-radius: 50%; color: var(--primary); background: var(--surface); }
   .seal span { font: italic 400 clamp(2rem, 4vw, 2.5rem)/.9 var(--font-heading); text-align: center; }
