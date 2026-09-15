@@ -113,6 +113,6 @@ jobs:
             set net:max-retries 2;
             set net:timeout 20;
             $protocol_settings
-            mirror --reverse --no-perms --verbose --parallel=2 dist/ /;
+            mirror --reverse --no-perms --verbose --parallel=1 dist/ /;
             bye
           "
