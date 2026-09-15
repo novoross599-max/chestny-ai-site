@@ -1,3 +1,6 @@
+---
+import consent from '../../public/legal/PD-CONSENT-2026-09-15.json';
+---
 <section class="section contact" id="contact">
   <div class="container">
     <span class="section-label">Обратная связь</span>
@@ -7,21 +10,24 @@
     </div>
     <img class="contact-illustration" src="/images/contact-feedback.webp" srcset="/images/contact-feedback-480.webp 480w, /images/contact-feedback.webp 1038w" sizes="(max-width: 640px) calc(100vw - 1.25rem), (max-width: 1070px) calc(100vw - 2rem), 1038px" width="1038" height="548" alt="Мужчина и женщина обсуждают вопросы о нейросетях за ноутбуком" loading="lazy" decoding="async" />
     <div class="contact-grid">
-      <form class="message-form" data-inactive-form aria-describedby="message-purpose form-status">
+      <form class="message-form" method="post" action="/api/contact.php" data-inactive-contact aria-describedby="message-purpose form-status">
         <div class="form-title"><h3>Написать сообщение</h3><span>Форма подготовлена</span></div>
-        <label>Имя<input type="text" name="name" autocomplete="name" placeholder="Как к вам обращаться" /></label>
-        <label>Email или Telegram<input type="text" name="contact" autocomplete="email" placeholder="example@mail.ru или @username" /></label>
-        <label>Сообщение<textarea name="message" rows="5" placeholder="Расскажите, чем я могу помочь"></textarea></label>
+        <label>Имя<input type="text" name="name" autocomplete="name" placeholder="Как к вам обращаться" required maxlength="100" /></label>
+        <label>Email<input type="email" name="email" autocomplete="email" placeholder="example@mail.ru" required maxlength="254" /></label>
+        <label>Сообщение<textarea name="message" rows="5" placeholder="Расскажите, чем я могу помочь" required maxlength="5000" aria-describedby="message-warning"></textarea></label>
+        <p class="message-warning" id="message-warning">Пожалуйста, не указывайте в сообщении сведения о расовой или национальной принадлежности, политических взглядах, религиозных или философских убеждениях, состоянии здоровья, интимной жизни и иные сведения, не необходимые для рассмотрения вашего обращения.</p>
         <p class="processing-purpose" id="message-purpose"><strong>Цель будущей обработки:</strong> обработка обращения пользователя и предоставление ответа на него.</p>
         <label class="consent">
-          <input type="checkbox" name="personal-data-consent" required />
-          <span>Я принимаю <a href="/personal-data-consent/">Согласие на обработку персональных данных</a> и ознакомлен(а) с <a href="/privacy/">Политикой обработки персональных данных</a>.</span>
+          <input type="checkbox" name="personal-data-consent" value="1" required />
+          <span><a href="/personal-data-consent/">{consent.checkboxText}</a></span>
         </label>
+        <a class="privacy-link" href="/privacy/">Политика обработки персональных данных</a>
+        <input type="hidden" name="consent-version" value={consent.version} />
         <button class="btn btn-primary" type="submit" disabled aria-describedby="form-status">Отправить</button>
         <p class="form-status" id="form-status">Отправка пока не подключена. Данные никуда не передаются и не сохраняются.</p>
       </form>
       <div class="contact-side">
-        <form class="subscribe" data-inactive-form aria-labelledby="subscribe-title" aria-describedby="subscribe-purpose subscribe-status">
+        <form class="subscribe" method="post" data-inactive-form aria-labelledby="subscribe-title" aria-describedby="subscribe-purpose subscribe-status">
           <h3 id="subscribe-title">Подписаться на обновления</h3>
           <p class="processing-purpose" id="subscribe-purpose"><strong>Цель будущей обработки:</strong> направление информационных сообщений и уведомлений об обновлениях проекта «Заработай с ИИ: Честный Дневник».</p>
           <label><span>Email</span><input type="email" name="subscription-email" autocomplete="email" placeholder="example@mail.ru" /></label>
@@ -42,11 +48,15 @@
   </div>
 </section>
 <script>
-  document.querySelectorAll('[data-inactive-form]').forEach((form) => {
+  // Блокировка обращения независима от подписки. Снимать только по разрешению.
+  document.querySelector('[data-inactive-contact]')?.addEventListener('submit', (event) => event.preventDefault());
+  document.querySelectorAll('.subscribe[data-inactive-form]').forEach((form) => {
     form.addEventListener('submit', (event) => event.preventDefault());
   });
 </script>
 <style>
+  .message-warning { margin: 0; color: var(--muted); font-size: .8rem; line-height: 1.6; }
+  .privacy-link { color: var(--primary); font-size: .8rem; text-underline-offset: 3px; }
   .contact-illustration { display: block; width: 100%; max-width: 1038px; height: auto; margin: 0 auto 2.5rem; }
   .contact { background: var(--surface); border-top: 1px solid var(--line); }
   .contact-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }

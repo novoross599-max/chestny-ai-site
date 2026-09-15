@@ -1,7 +1,7 @@
 ---
 import Footer from './Footer.astro';
 
-const { title, purpose, sections = [] } = Astro.props;
+const { title, purpose, sections = [], operator, revision, version, inactive = false } = Astro.props;
 ---
 
 <header class="legal-header">
@@ -12,31 +12,31 @@ const { title, purpose, sections = [] } = Astro.props;
 </header>
 <main id="main" class="legal-main">
   <article class="container legal-document">
-    <p class="eyebrow">Юридическая страница · техническая заготовка</p>
+    <p class="eyebrow">Юридическая информация</p>
     <h1>{title}</h1>
-    <aside class="draft-warning" role="note">
-      <strong>Документ не готов к публикации.</strong>
-      <span>Это структурная заготовка. До начала сбора персональных данных её необходимо заполнить реальными сведениями и проверить с профильным юристом.</span>
-    </aside>
-    <p class="purpose"><strong>Назначение документа:</strong> {purpose}</p>
-    <dl class="operator-todos">
-      <div><dt>Оператор</dt><dd>[ФИО ОПЕРАТОРА — ЗАПОЛНИТЬ ПЕРЕД ПУБЛИКАЦИЕЙ]</dd></div>
-      <div><dt>Адрес</dt><dd>[АДРЕС ОПЕРАТОРА — ЗАПОЛНИТЬ]</dd></div>
-      <div><dt>Контакт по вопросам персональных данных</dt><dd>[КОНТАКТ ДЛЯ ОБРАЩЕНИЙ ПО ПЕРСОНАЛЬНЫМ ДАННЫМ — ЗАПОЛНИТЬ]</dd></div>
-    </dl>
+    {revision && <p>Редакция: {revision}</p>}
+    {version && <p>Версия: {version}</p>}
+    {inactive && <aside class="draft-warning" role="note">
+      <strong>Согласие на информационные сообщения — подготовлено, но не введено в действие.</strong>
+      <span>Подписка отключена. Приём адресов электронной почты для рассылки и отправка информационных сообщений не осуществляются.</span>
+    </aside>}
+    <p class="purpose">{purpose}</p>
+    {operator && <dl class="operator-todos">
+      <div><dt>Оператор персональных данных</dt><dd>{operator.name}</dd></div>
+      <div><dt>Статус</dt><dd>{operator.status}</dd></div>
+      <div><dt>Сайт</dt><dd>{operator.site}</dd></div>
+      <div><dt>Электронная почта для обращений по вопросам обработки персональных данных</dt><dd><a href={`mailto:${operator.email}`}>{operator.email}</a></dd></div>
+    </dl>}
     <div class="document-sections">
       {sections.map((section) => (
         <section>
           <h2>{section.heading}</h2>
-          <p>{section.text}</p>
+          {section.text && <p>{section.text}</p>}
+          {section.paragraphs?.map((paragraph) => <p>{paragraph}</p>)}
+          {section.items && <ul>{section.items.map((item) => <li>{item}</li>)}</ul>}
           {section.todo && <p class="inline-todo">{section.todo}</p>}
         </section>
       ))}
-    </div>
-    <div class="publication-todo">
-      <h2>Перед публикацией</h2>
-      <p>[ДАТА ВСТУПЛЕНИЯ ДОКУМЕНТА В СИЛУ — ЗАПОЛНИТЬ]</p>
-      <p>[ПРОВЕРИТЬ И ДОПОЛНИТЬ ДОКУМЕНТ ПОСЛЕ ВЫБОРА РОССИЙСКОГО ОБРАБОТЧИКА И ХРАНИЛИЩА ДАННЫХ]</p>
     </div>
     <a class="btn btn-secondary" href="/">Вернуться на главную</a>
   </article>
@@ -60,7 +60,7 @@ const { title, purpose, sections = [] } = Astro.props;
   .operator-todos { display: grid; gap: .75rem; margin: 1.5rem 0 2.5rem; }
   .operator-todos div { display: grid; grid-template-columns: minmax(150px, .35fr) 1fr; gap: 1rem; padding: 1rem; border: 1px dashed var(--accent); border-radius: 12px; background: var(--surface-strong); }
   dt { color: var(--muted); font-size: .8rem; font-weight: 800; text-transform: uppercase; }
-  dd { margin: 0; color: #7a3f00; font-size: .88rem; font-weight: 800; }
+  dd { margin: 0; overflow-wrap: anywhere; color: var(--ink); font-size: .88rem; font-weight: 700; }
   .document-sections { display: grid; gap: 2rem; }
   .document-sections section { padding-bottom: 2rem; border-bottom: 1px solid var(--line); }
   .document-sections h2, .publication-todo h2 { font-size: clamp(1.35rem, 2.4vw, 1.7rem); }
