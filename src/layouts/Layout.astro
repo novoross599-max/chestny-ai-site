@@ -4,7 +4,8 @@ import '../styles/global.css';
 const {
   title = 'Заработай с ИИ: Честный Дневник — ИИ на практике',
   description = 'Честный дневник освоения ИИ с нуля: ChatGPT, Codex, создание сайтов, практические эксперименты, ошибки и реальные результаты обучения.',
-  robots
+  robots,
+  canonical
 } = Astro.props;
 ---
 
@@ -15,6 +16,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {robots && <meta name="robots" content={robots} />}
+    {canonical && <link rel="canonical" href={canonical} />}
     <meta name="theme-color" content="#f3f0e8" />
     <title>{title}</title>
   </head>

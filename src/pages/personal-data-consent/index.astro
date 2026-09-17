@@ -3,6 +3,6 @@ import Layout from '../../layouts/Layout.astro';
 import LegalPage from '../../components/LegalPage.astro';
 import consent from '../../../public/legal/PD-CONSENT-2026-09-15.json';
 ---
-<Layout title="Согласие на обработку персональных данных | chestny-ai.ru" description="Условия согласия на обработку имени, email и текста обращения через форму обратной связи сайта chestny-ai.ru.">
+<Layout canonical="https://chestny-ai.ru/personal-data-consent/" title="Согласие на обработку персональных данных | chestny-ai.ru" description="Условия согласия на обработку имени, email и текста обращения через форму обратной связи сайта chestny-ai.ru.">
   <LegalPage title={consent.title} purpose={consent.introduction} sections={consent.sections} operator={consent.operator} revision={consent.revisionLabel} version={consent.version} />
 </Layout>
